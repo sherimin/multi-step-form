@@ -25,8 +25,8 @@ const step2Selections = [
     }
 ]
 
-const Step2 = () => {
-    const [isMonthly, setIsMonthly] = useState(true);
+const Step2 = ({ isMonthly }) => {
+    
 
   return (
     <div className='bg-green-200 flex flex-col h-full w-full justify-start items-center mt-10'>
