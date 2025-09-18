@@ -1,10 +1,10 @@
 import React from 'react'
 
-const SideButton = ({ title, subtitle }) => {
+const SideButton = ({ id, title, subtitle, isActive }) => {
   return (
-    <div className='flex flex-row justify-start items-center ml-10 mt-8'>
-      <div className='flex border-2 rounded-full mr-5 w-12 h-12 justify-center items-center font-bold text-neutral-white'>
-        1
+    <div className='flex flex-row justify-start items-center ml-10 mt-8 cursor-pointer'>
+      <div className={`flex border-2 rounded-full mr-5 w-12 h-12 justify-center items-center font-bold  ${isActive ? 'bg-primary-blue-200 text-primary-blue-950 border-primary-blue-200' : 'bg-transparent text-neutral-white border-neutral-white'}`}>
+        {id}
       </div>
 
       <div className='flex flex-col'>
