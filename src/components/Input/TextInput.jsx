@@ -1,8 +1,11 @@
 import React from 'react'
 
-const TextInput = () => {
+const TextInput = ({ label }) => {
   return (
-    <div>TextInput</div>
+    <div className=''>
+      <div>{label}</div>
+      <input />
+    </div>
   )
 }
 

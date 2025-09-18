@@ -11,7 +11,7 @@ const Form = ({ activeStep }) => {
       {activeStep === 1 && <Step1 />}
       {activeStep === 2 && <Step2 />}
 
-      <div className='flex flex-row justify-between'>
+      <div className='flex flex-row justify-between mt-5'>
         <div>Go Back</div>
         <div>Next Step</div>
       </div>
