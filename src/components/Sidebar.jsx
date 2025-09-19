@@ -1,5 +1,5 @@
-import React from 'react'
-import SideButton from './SideButton'
+import React from "react";
+import SideButton from "./SideButton";
 import bgSidebar from "../assets/images/bg-sidebar-desktop.svg";
 
 const Sidebar = ({ activeStep, setActiveStep }) => {
@@ -11,26 +11,24 @@ const Sidebar = ({ activeStep, setActiveStep }) => {
   ];
 
   return (
-    <div 
+    <div
       className={` h-full w-72 bg-no-repeat bg-contain bg-center border-2 border-red-500`}
-      style={{ backgroundImage: `url(${bgSidebar})`}}
+      style={{ backgroundImage: `url(${bgSidebar})` }}
     >
       {steps.map((step) => {
-        return(
-        <SideButton
-          key={step.id}
-          id={step.id}
-          title={step.title}
-          subtitle={step.subtitle}
-          isActive={step.id === activeStep}
-          onClick={() => setActiveStep(step.id)}
-        />
-        )
-
+        return (
+          <SideButton
+            key={step.id}
+            id={step.id}
+            title={step.title}
+            subtitle={step.subtitle}
+            isActive={step.id === activeStep}
+            onClick={() => setActiveStep(step.id)}
+          />
+        );
       })}
     </div>
-  )
-}
+  );
+};
 
 export default Sidebar;
-

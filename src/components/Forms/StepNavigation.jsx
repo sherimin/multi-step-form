@@ -1,12 +1,11 @@
-import React from 'react'
+import React from "react";
 
 const StepNavigation = ({ label, onClick }) => {
-
   return (
     <button onClick={onClick} className={`flex font-semibold`}>
-        {label}
+      {label}
     </button>
-  )
-}
+  );
+};
 
 export default StepNavigation;

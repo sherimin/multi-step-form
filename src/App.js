@@ -1,8 +1,8 @@
 // import logo from './logo.svg';
-import './App.css';
-import Sidebar from './components/Sidebar';
-import Form from './components/Forms/Form';
-import { useState } from 'react';
+import "./App.css";
+import Sidebar from "./components/Sidebar";
+import Form from "./components/Forms/Form";
+import { useState } from "react";
 
 function App() {
   const [activeStep, setActiveStep] = useState(2);
