@@ -1,9 +1,12 @@
 import React from 'react'
 
-const StepNavigation = ({}) => {
+const StepNavigation = ({ label, onClick }) => {
+
   return (
-    <div>StepNavigation</div>
+    <button onClick={onClick} className={`flex font-semibold`}>
+        {label}
+    </button>
   )
 }
 
-export default StepNavigation
+export default StepNavigation;

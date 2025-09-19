@@ -11,7 +11,7 @@ function App() {
     <div className="body">
       <main>
         <Sidebar activeStep={activeStep} setActiveStep={setActiveStep} />
-        <Form activeStep={activeStep} />
+        <Form activeStep={activeStep} setActiveStep={setActiveStep} />
       </main>
     </div>
   );
