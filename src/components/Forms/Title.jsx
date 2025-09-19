@@ -17,6 +17,10 @@ const titleContent = [
     title: 'Finishing up',
     description: 'Double check everything looks OK before confirming.',
   },
+  {
+    title: '',
+    description: '',
+  }
 ]
 
 const Title = ({ activeStep }) => {

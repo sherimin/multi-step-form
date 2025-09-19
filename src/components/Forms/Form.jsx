@@ -5,6 +5,7 @@ import Step2 from './Step2'
 import Step3 from './Step3'
 import Step4 from './Step4'
 import StepNavigation from './StepNavigation'
+import Step5 from './Step5'
 
 const Form = ({ activeStep, setActiveStep }) => {
   const [isMonthly, setIsMonthly] = useState(true);
@@ -24,6 +25,7 @@ const Form = ({ activeStep, setActiveStep }) => {
       {activeStep === 2 && <Step2 isMonthly={isMonthly} />}
       {activeStep === 3 && <Step3 isMonthly={isMonthly} />}
       {activeStep === 4 && <Step4 isMonthly={isMonthly} />}
+      {activeStep === 5 && <Step5 />}
 
 
       <div className='flex flex-row justify-between mt-5'>
