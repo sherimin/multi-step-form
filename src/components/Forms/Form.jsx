@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useForm } from "react-hook-form";
 import Title from "./Title";
 import Step1 from "./Step1";
 import Step2 from "./Step2";
@@ -6,14 +7,36 @@ import Step3 from "./Step3";
 import Step4 from "./Step4";
 import StepNavigation from "./StepNavigation";
 import Step5 from "./Step5";
+import validation from "../../utils/validation";
 
 const Form = ({ activeStep, setActiveStep }) => {
   const [isMonthly, setIsMonthly] = useState(true);
 
-  const handleNext = (activeStep, setActiveStep) => {
-    //Form Validation Here
+  const {
+    register,
+    handleSubmit,
+    formState: {errors},
+    getValues,
+    setValue,
+    trigger
+  } = useForm({
+    defaultValues: {
+      name: '',
+      plan: "",
+      isMonthly: true,
+      addOns: [],
+    }
+  })
 
-    setActiveStep(activeStep + 1);
+  const handleNext = async(activeStep, setActiveStep, data) => {
+    console.log('data from handleNext: ', data);
+
+    //Form Input Validation
+    const isAllInputValid = await validation([]);
+
+    if (isAllInputValid) {
+      setActiveStep(activeStep + 1);
+    }
   };
 
   return (
@@ -25,7 +48,7 @@ const Form = ({ activeStep, setActiveStep }) => {
           <>
             <Title activeStep={activeStep} />
 
-            {activeStep === 1 && <Step1 />}
+            {activeStep === 1 && <Step1 register={register} errors={errors} />}
             {activeStep === 2 && <Step2 isMonthly={isMonthly} />}
             {activeStep === 3 && <Step3 isMonthly={isMonthly} />}
             {activeStep === 4 && <Step4 isMonthly={isMonthly} />}
