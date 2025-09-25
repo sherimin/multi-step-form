@@ -7,7 +7,6 @@ import Step3 from "./Step3";
 import Step4 from "./Step4";
 import StepNavigation from "./StepNavigation";
 import Step5 from "./Step5";
-import validation from "../../utils/validation";
 
 const Form = ({ activeStep, setActiveStep }) => {
   const [isMonthly, setIsMonthly] = useState(true);
@@ -28,15 +27,26 @@ const Form = ({ activeStep, setActiveStep }) => {
     }
   })
 
-  const handleNext = async(activeStep, setActiveStep, data) => {
-    console.log('data from handleNext: ', data);
+  const handleValidation = async () => {
+    let fieldsToValidate = [];
+
+    if (activeStep === 1) fieldsToValidate = ["name", "email", "phone"];
 
     //Form Input Validation
-    const isAllInputValid = await validation([]);
+    const isValid = await trigger(fieldsToValidate)
 
-    if (isAllInputValid) {
-      setActiveStep(activeStep + 1);
+    if (isValid) {
+      handleSubmit(handleNext)
     }
+  }
+
+  const handleNext = (data) => {
+    console.log('data from handleNext: ', data);
+
+    
+
+    
+    setActiveStep(activeStep + 1)
   };
 
   return (
@@ -51,7 +61,7 @@ const Form = ({ activeStep, setActiveStep }) => {
             {activeStep === 1 && <Step1 register={register} errors={errors} />}
             {activeStep === 2 && <Step2 isMonthly={isMonthly} />}
             {activeStep === 3 && <Step3 isMonthly={isMonthly} />}
-            {activeStep === 4 && <Step4 isMonthly={isMonthly} />}
+            {activeStep === 4 && <Step4 isMonthly={isMonthly} getValues={getValues} />}
 
             <div className="flex flex-row justify-between mt-5">
               {activeStep === 1 ? (
@@ -60,7 +70,7 @@ const Form = ({ activeStep, setActiveStep }) => {
                 <StepNavigation
                   label="Go Back"
                   activeStep={activeStep}
-                  onClick={() => setActiveStep(activeStep - 1)}
+                  onClick={() => setActiveStep(activeStep - 1)} // Go backword without form validation
                 />
               )}
 
@@ -68,12 +78,12 @@ const Form = ({ activeStep, setActiveStep }) => {
                 <StepNavigation
                   label="Confirm"
                   activeStep={activeStep}
-                  onClick={() => handleNext(activeStep, setActiveStep)}
+                  onClick={handleValidation}
                 />
               ) : (
                 <StepNavigation
                   label="Next Step"
-                  onClick={() => handleNext(activeStep, setActiveStep)}
+                  onClick={handleValidation}
                 />
               )}
             </div>
