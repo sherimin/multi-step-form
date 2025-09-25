@@ -14,18 +14,18 @@ const Form = ({ activeStep, setActiveStep }) => {
   const {
     register,
     handleSubmit,
-    formState: {errors},
+    formState: { errors },
     getValues,
     setValue,
-    trigger
+    trigger,
   } = useForm({
     defaultValues: {
-      name: '',
+      name: "",
       plan: "",
       isMonthly: true,
       addOns: [],
-    }
-  })
+    },
+  });
 
   const handleValidation = async () => {
     let fieldsToValidate = [];
@@ -33,20 +33,17 @@ const Form = ({ activeStep, setActiveStep }) => {
     if (activeStep === 1) fieldsToValidate = ["name", "email", "phone"];
 
     //Form Input Validation
-    const isValid = await trigger(fieldsToValidate)
+    const isValid = await trigger(fieldsToValidate);
 
     if (isValid) {
-      handleSubmit(handleNext)
+      handleSubmit(handleNext)();
     }
-  }
+  };
 
   const handleNext = (data) => {
-    console.log('data from handleNext: ', data);
+    console.log("data from handleNext: ", data);
 
-    
-
-    
-    setActiveStep(activeStep + 1)
+    setActiveStep(activeStep + 1);
   };
 
   return (
@@ -61,7 +58,9 @@ const Form = ({ activeStep, setActiveStep }) => {
             {activeStep === 1 && <Step1 register={register} errors={errors} />}
             {activeStep === 2 && <Step2 isMonthly={isMonthly} />}
             {activeStep === 3 && <Step3 isMonthly={isMonthly} />}
-            {activeStep === 4 && <Step4 isMonthly={isMonthly} getValues={getValues} />}
+            {activeStep === 4 && (
+              <Step4 isMonthly={isMonthly} getValues={getValues} />
+            )}
 
             <div className="flex flex-row justify-between mt-5">
               {activeStep === 1 ? (
@@ -75,16 +74,9 @@ const Form = ({ activeStep, setActiveStep }) => {
               )}
 
               {activeStep === 4 ? (
-                <StepNavigation
-                  label="Confirm"
-                  activeStep={activeStep}
-                  onClick={handleValidation}
-                />
+                <StepNavigation label="Confirm" onClick={handleValidation} />
               ) : (
-                <StepNavigation
-                  label="Next Step"
-                  onClick={handleValidation}
-                />
+                <StepNavigation label="Next Step" onClick={handleValidation} />
               )}
             </div>
           </>

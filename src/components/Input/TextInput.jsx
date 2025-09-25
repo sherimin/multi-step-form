@@ -1,16 +1,22 @@
 import React from "react";
 
-const TextInput = ({ label, name, register, errors, rules }) => {
+const TextInput = ({ label, placeholder, register, error, ...rest }) => {
   return (
     <div className="flex flex-col w-full">
-      <div className="flex font-bold text-primary-blue-950 mb-2">{label}</div>
-      <input className="flex w-full border-[1px] border-neutral-grey-500 rounded-md outline-primary-purple-600 p-2" />
+      <div className="flex flex-row justify-between mb-2 text-md">
+        <div className="flex text-primary-blue-950">{label}</div>
+        {error && (
+          <p className="text-red-500 font-bold">{error.message}</p>
+        )}
+      </div>
 
-      {errors[name] && (
-        <p className="text-primary-red-500 text-sm mt-1">
-          {errors[name].message}
-        </p>
-      )}
+      <input
+        className={`flex w-full border-[1px]  rounded-md outline-primary-purple-600 p-2 ${
+          error ? "border-primary-red-500" : "border-neutral-grey-500"
+        }`}
+        placeholder={placeholder}
+        {...rest}
+      />
     </div>
   );
 };
