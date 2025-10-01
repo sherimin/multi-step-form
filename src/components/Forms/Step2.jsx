@@ -28,25 +28,76 @@ const step2Selections = [
   },
 ];
 
-const Step2 = ({ isMonthly }) => {
+const Step2 = ({ setValue, trigger, watch }) => {
+  const selectedPlan = watch("plan");
+  const isMonthly = watch("isMonthly");
+
   return (
-    <div className="bg-green-200 flex flex-col h-full w-full justify-start items-center mt-10">
+    <div className="flex flex-col h-full w-full justify-start items-center mt-10">
       <div className="flex w-full h-1/2 gap-4">
-        {step2Selections.map((selection) => (
-          <SelectInput
-            key={selection.key}
-            avatar={selection.avatar}
-            title={selection.title}
-            price={isMonthly ? selection.monthlyPrice : selection.yearlyPrice}
-            isMonthly={isMonthly}
-          />
-        ))}
+        <SelectInput
+          avatar={arcadeAvatar}
+          title="Arcade"
+          price={isMonthly ? "$9/mo" : "$90/yr"}
+          isMonthly={isMonthly}
+          isSelected={selectedPlan === "Arcade"}
+          onClick={() => {
+            setValue("plan", "Arcade", { shouldValidate: true });
+            trigger("plan");
+          }}
+        />
+
+        <SelectInput
+          avatar={advancedAvatar}
+          title="Advanced"
+          price={isMonthly ? "$12/mo" : "$120/yr"}
+          isMonthly={isMonthly}
+          isSelected={selectedPlan === "Advanced"}
+          onClick={() => {
+            setValue("plan", "Advanced", { shouldValidate: true });
+            trigger("plan");
+          }}
+        />
+
+        <SelectInput
+          avatar={proAvatar}
+          title="Pro"
+          price={isMonthly ? "$15/mo" : "$150/yr"}
+          isMonthly={isMonthly}
+          isSelected={selectedPlan === "Pro"}
+          onClick={() => {
+            setValue("plan", "Pro", { shouldValidate: true });
+            trigger("plan");
+          }}
+        />
       </div>
 
-      <div className="flex flex-row mt-10">
-        <div>Monthly</div>
-        <div>Button</div>
-        <div>Yearly</div>
+      <div className="flex flex-row mt-10 bg-gray-100 w-full gap-5 justify-center pt-3 pb-3">
+        <div
+          className={`font-bold  ${isMonthly ? "text-primary-blue-950" : "text-neutral-grey-500"}`}
+        >
+          Monthly
+        </div>
+
+        <div
+          onClick={() =>
+            setValue("isMonthly", !isMonthly, { shouldValidate: true })
+          }
+        >
+          <div className="relative w-14 h-7 bg-primary-blue-950 rounded-full cursor-pointer">
+            <div
+              className={`absolute top-1 left-1 w-5 h-5 bg-white rounded-full shadow-md transform transition-transform duration-300 ${
+                isMonthly ? "translate-x-0" : "translate-x-7"
+              }`}
+            />
+          </div>
+        </div>
+
+        <div
+          className={`font-bold  ${isMonthly ? "text-neutral-grey-500" : "text-primary-blue-950"}`}
+        >
+          Yearly
+        </div>
       </div>
     </div>
   );

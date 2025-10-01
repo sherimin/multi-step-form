@@ -31,7 +31,7 @@ const Step1 = ({ register, errors }) => {
         {...register("phone", {
           required: "This field is required.",
           pattern: {
-            value: /^[0-9]$/,
+            value: /^[0-9]{10}$/,
             message: "Phone number must contain only digits.",
           },
         })}

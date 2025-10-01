@@ -5,7 +5,7 @@ import Form from "./components/Forms/Form";
 import { useState } from "react";
 
 function App() {
-  const [activeStep, setActiveStep] = useState(1);
+  const [activeStep, setActiveStep] = useState(2);
 
   return (
     <div className="body">

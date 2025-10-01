@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { useForm } from "react-hook-form";
 import Title from "./Title";
 import Step1 from "./Step1";
@@ -9,8 +9,6 @@ import StepNavigation from "./StepNavigation";
 import Step5 from "./Step5";
 
 const Form = ({ activeStep, setActiveStep }) => {
-  const [isMonthly, setIsMonthly] = useState(true);
-
   const {
     register,
     handleSubmit,
@@ -18,6 +16,7 @@ const Form = ({ activeStep, setActiveStep }) => {
     getValues,
     setValue,
     trigger,
+    watch,
   } = useForm({
     defaultValues: {
       name: "",
@@ -27,10 +26,13 @@ const Form = ({ activeStep, setActiveStep }) => {
     },
   });
 
+  register("plan", { required: "You must select a plan." });
+
   const handleValidation = async () => {
     let fieldsToValidate = [];
 
     if (activeStep === 1) fieldsToValidate = ["name", "email", "phone"];
+    if (activeStep === 2) fieldsToValidate = ["plan"];
 
     //Form Input Validation
     const isValid = await trigger(fieldsToValidate);
@@ -56,11 +58,11 @@ const Form = ({ activeStep, setActiveStep }) => {
             <Title activeStep={activeStep} />
 
             {activeStep === 1 && <Step1 register={register} errors={errors} />}
-            {activeStep === 2 && <Step2 isMonthly={isMonthly} />}
-            {activeStep === 3 && <Step3 isMonthly={isMonthly} />}
-            {activeStep === 4 && (
-              <Step4 isMonthly={isMonthly} getValues={getValues} />
+            {activeStep === 2 && (
+              <Step2 setValue={setValue} trigger={trigger} watch={watch} />
             )}
+            {activeStep === 3 && <Step3 watch={watch} />}
+            {activeStep === 4 && <Step4 getValues={getValues} />}
 
             <div className="flex flex-row justify-between mt-5">
               {activeStep === 1 ? (

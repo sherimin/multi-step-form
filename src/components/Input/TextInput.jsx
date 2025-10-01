@@ -5,9 +5,7 @@ const TextInput = ({ label, placeholder, register, error, ...rest }) => {
     <div className="flex flex-col w-full">
       <div className="flex flex-row justify-between mb-2 text-md">
         <div className="flex text-primary-blue-950">{label}</div>
-        {error && (
-          <p className="text-red-500 font-bold">{error.message}</p>
-        )}
+        {error && <p className="text-red-500 font-bold">{error.message}</p>}
       </div>
 
       <input
