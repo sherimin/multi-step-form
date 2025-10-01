@@ -1,7 +1,9 @@
 import React from "react";
 import AddOnInput from "../Input/AddOnInput";
 
-const Step3 = ({ isMonthly }) => {
+const Step3 = ({ setValue, watch }) => {
+  const isMonthly = watch("isMonthly");
+
   const addOnItems = [
     {
       name: "Online Service",
@@ -24,17 +26,49 @@ const Step3 = ({ isMonthly }) => {
   ];
 
   return (
-    <div className="flex flex-col h-full w-full bg-purple-100 mt-10 justify-start gap-8">
-      {addOnItems.map((item) => (
-        <AddOnInput
-          key={item.name}
-          name={item.name}
-          description={item.description}
-          price={
-            isMonthly ? item.monthlyPrice + "/mo" : item.yearlyPrice + "/yr"
-          }
-        />
-      ))}
+    <div className="flex flex-col h-full w-full mt-10 justify-start gap-6">
+      {addOnItems.map((item) => {
+        const itemPrice = isMonthly
+          ? `${item.monthlyPrice}`
+          : `${item.yearlyPrice}`;
+
+        return (
+          <AddOnInput
+            key={item.name}
+            name={item.name}
+            description={item.description}
+            price={
+              isMonthly ? item.monthlyPrice + "/mo" : item.yearlyPrice + "/yr"
+            }
+            isSelected={watch("addOns")?.some(
+              (selectedItem) => selectedItem.name === item.name,
+            )}
+            onClick={() => {
+              const currentAddOns = watch("addOns") || [];
+              const exist = currentAddOns.some(
+                (selectedItem) => selectedItem.name === item.name,
+              );
+
+              if (exist) {
+                // if this item is already selected, them remove it.
+                setValue(
+                  "addOns",
+                  currentAddOns.filter(
+                    (selectedItem) => selectedItem.name !== item.name,
+                  ),
+                  { shouldValidate: true },
+                );
+              } else {
+                setValue(
+                  "addOns",
+                  [...currentAddOns, { name: item.name, price: itemPrice }],
+                  { shouldValidate: true },
+                );
+              }
+            }}
+          />
+        );
+      })}
     </div>
   );
 };

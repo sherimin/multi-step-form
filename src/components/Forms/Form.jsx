@@ -61,7 +61,7 @@ const Form = ({ activeStep, setActiveStep }) => {
             {activeStep === 2 && (
               <Step2 setValue={setValue} trigger={trigger} watch={watch} />
             )}
-            {activeStep === 3 && <Step3 watch={watch} />}
+            {activeStep === 3 && <Step3 setValue={setValue} watch={watch} />}
             {activeStep === 4 && <Step4 getValues={getValues} />}
 
             <div className="flex flex-row justify-between mt-5">

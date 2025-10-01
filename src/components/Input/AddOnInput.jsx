@@ -1,8 +1,11 @@
 import React from "react";
 
-const AddOnInput = ({ name, description, price }) => {
+const AddOnInput = ({ name, description, price, isSelected, onClick }) => {
   return (
-    <div className="flex flex-row justify-between items-center border-[1px] border-neutral-grey-500 p-5 rounded-md">
+    <div
+      className={`flex flex-row justify-between items-center border-2 cursor-pointer p-5 rounded-md ${isSelected ? "border-primary-purple-600 bg-neutral-blue-50" : "border-neutral-grey-500"}`}
+      onClick={onClick}
+    >
       <div>checkbox</div>
 
       <div>

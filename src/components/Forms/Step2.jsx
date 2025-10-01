@@ -72,7 +72,7 @@ const Step2 = ({ setValue, trigger, watch }) => {
         />
       </div>
 
-      <div className="flex flex-row mt-10 bg-gray-100 w-full gap-5 justify-center pt-3 pb-3">
+      <div className="flex flex-row mt-10 bg-gray-100 w-full gap-5 justify-center pt-3 pb-3 rounded-lg">
         <div
           className={`font-bold  ${isMonthly ? "text-primary-blue-950" : "text-neutral-grey-500"}`}
         >
