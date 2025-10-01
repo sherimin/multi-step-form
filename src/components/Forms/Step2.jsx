@@ -35,41 +35,28 @@ const Step2 = ({ setValue, trigger, watch }) => {
   return (
     <div className="flex flex-col h-full w-full justify-start items-center mt-10">
       <div className="flex w-full h-1/2 gap-4">
-        <SelectInput
-          avatar={arcadeAvatar}
-          title="Arcade"
-          price={isMonthly ? "$9/mo" : "$90/yr"}
-          isMonthly={isMonthly}
-          isSelected={selectedPlan === "Arcade"}
-          onClick={() => {
-            setValue("plan", "Arcade", { shouldValidate: true });
-            trigger("plan");
-          }}
-        />
 
-        <SelectInput
-          avatar={advancedAvatar}
-          title="Advanced"
-          price={isMonthly ? "$12/mo" : "$120/yr"}
-          isMonthly={isMonthly}
-          isSelected={selectedPlan === "Advanced"}
-          onClick={() => {
-            setValue("plan", "Advanced", { shouldValidate: true });
-            trigger("plan");
-          }}
-        />
+      {step2Selections.map((plan) => {
+        const planName = plan.title;
+        const planPrice = isMonthly ? plan.monthlyPrice : plan.yearlyPrice;
 
-        <SelectInput
-          avatar={proAvatar}
-          title="Pro"
-          price={isMonthly ? "$15/mo" : "$150/yr"}
+        return (<SelectInput
+          key={planName}
+          avatar={plan.avatar}
+          title={planName}
+          price={isMonthly ? plan.monthlyPrice : plan.yearlyPrice}
           isMonthly={isMonthly}
-          isSelected={selectedPlan === "Pro"}
+          isSelected={selectedPlan?.name === planName} 
           onClick={() => {
-            setValue("plan", "Pro", { shouldValidate: true });
-            trigger("plan");
+            setValue(
+              "plan",
+              { name: planName, price: planPrice },
+              { shouldValidate: true }
+            );
+            trigger("plan")
           }}
-        />
+        />)
+      })}
       </div>
 
       <div className="flex flex-row mt-10 bg-gray-100 w-full gap-5 justify-center pt-3 pb-3 rounded-lg">

@@ -10,7 +10,7 @@ const SelectInput = ({
 }) => {
   return (
     <div
-      className={`flex flex-col border-2 ${isSelected ? "border-primary-purple-600 bg-neutral-blue-50" : "border-neutral-grey-500"}  rounded-md w-1/3 p-3 justify-between items-start cursor-pointer`}
+      className={`flex flex-col border-2 ${isSelected ? "border-primary-purple-600 bg-neutral-blue-100" : "border-neutral-grey-500"}  rounded-md w-1/3 p-3 justify-between items-start cursor-pointer`}
       onClick={onClick}
     >
       <img src={avatar} alt={avatar} className="flex h-12 w-12" />
