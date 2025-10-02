@@ -9,7 +9,7 @@ function App() {
 
   return (
     <div className="body">
-      <main>
+      <main className="flex h-4/5 bg-neutral-white p-[20px] rounded-2xl justify-center items-center">
         <Sidebar activeStep={activeStep} setActiveStep={setActiveStep} />
         <Form activeStep={activeStep} setActiveStep={setActiveStep} />
       </main>

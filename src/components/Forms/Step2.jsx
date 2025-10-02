@@ -34,7 +34,7 @@ const Step2 = ({ setValue, trigger, watch }) => {
 
   return (
     <div className="flex flex-col h-full w-full justify-start items-center mt-10">
-      <div className="flex w-full h-1/2 gap-4">
+      <div className="flex flex-col w-full gap-4 md:flex-row border-2 border-blue-900 h-full md:h-1/2 ">
         {step2Selections.map((plan) => {
           const planName = plan.title;
           const planPrice = isMonthly ? plan.monthlyPrice : plan.yearlyPrice;
