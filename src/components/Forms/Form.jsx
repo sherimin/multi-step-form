@@ -26,7 +26,7 @@ const Form = ({ activeStep, setActiveStep }) => {
     },
   });
 
-  register("plan", { required: "You must select a plan." });
+  // register("plan", { required: "You must select a plan." });
 
   const handleValidation = async () => {
     let fieldsToValidate = [];
@@ -42,9 +42,7 @@ const Form = ({ activeStep, setActiveStep }) => {
     }
   };
 
-  const handleNext = (data) => {
-    console.log("data from handleNext: ", data);
-
+  const handleNext = () => {
     setActiveStep(activeStep + 1);
   };
 
@@ -62,7 +60,7 @@ const Form = ({ activeStep, setActiveStep }) => {
               <Step2 setValue={setValue} trigger={trigger} watch={watch} />
             )}
             {activeStep === 3 && <Step3 setValue={setValue} watch={watch} />}
-            {activeStep === 4 && <Step4 getValues={getValues} />}
+            {activeStep === 4 && <Step4 getValues={getValues} setActiveStep={setActiveStep} />}
 
             <div className="flex flex-row justify-between mt-5">
               {activeStep === 1 ? (

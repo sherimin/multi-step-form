@@ -9,22 +9,22 @@ const step2Selections = [
     key: 1,
     avatar: arcadeAvatar,
     title: "Arcade",
-    monthlyPrice: "$9/mo",
-    yearlyPrice: "$90/yr",
+    monthlyPrice: 9,
+    yearlyPrice: 90,
   },
   {
     key: 2,
     avatar: advancedAvatar,
     title: "Advanced",
-    monthlyPrice: "$12/mo",
-    yearlyPrice: "$120/yr",
+    monthlyPrice: 12,
+    yearlyPrice: 120,
   },
   {
     key: 3,
     avatar: proAvatar,
     title: "Pro",
-    monthlyPrice: "$15/mo",
-    yearlyPrice: "$150/yr",
+    monthlyPrice: 15,
+    yearlyPrice: 150,
   },
 ];
 
@@ -44,7 +44,11 @@ const Step2 = ({ setValue, trigger, watch }) => {
           key={planName}
           avatar={plan.avatar}
           title={planName}
-          price={isMonthly ? plan.monthlyPrice : plan.yearlyPrice}
+          price={
+            isMonthly
+              ? `$${plan.monthlyPrice}/mo`
+              : `$${plan.yearlyPrice}/yr`
+          }
           isMonthly={isMonthly}
           isSelected={selectedPlan?.name === planName} 
           onClick={() => {
