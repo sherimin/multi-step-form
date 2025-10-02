@@ -35,32 +35,33 @@ const Step2 = ({ setValue, trigger, watch }) => {
   return (
     <div className="flex flex-col h-full w-full justify-start items-center mt-10">
       <div className="flex w-full h-1/2 gap-4">
+        {step2Selections.map((plan) => {
+          const planName = plan.title;
+          const planPrice = isMonthly ? plan.monthlyPrice : plan.yearlyPrice;
 
-      {step2Selections.map((plan) => {
-        const planName = plan.title;
-        const planPrice = isMonthly ? plan.monthlyPrice : plan.yearlyPrice;
-
-        return (<SelectInput
-          key={planName}
-          avatar={plan.avatar}
-          title={planName}
-          price={
-            isMonthly
-              ? `$${plan.monthlyPrice}/mo`
-              : `$${plan.yearlyPrice}/yr`
-          }
-          isMonthly={isMonthly}
-          isSelected={selectedPlan?.name === planName} 
-          onClick={() => {
-            setValue(
-              "plan",
-              { name: planName, price: planPrice },
-              { shouldValidate: true }
-            );
-            trigger("plan")
-          }}
-        />)
-      })}
+          return (
+            <SelectInput
+              key={planName}
+              avatar={plan.avatar}
+              title={planName}
+              price={
+                isMonthly
+                  ? `$${plan.monthlyPrice}/mo`
+                  : `$${plan.yearlyPrice}/yr`
+              }
+              isMonthly={isMonthly}
+              isSelected={selectedPlan?.name === planName}
+              onClick={() => {
+                setValue(
+                  "plan",
+                  { name: planName, price: planPrice },
+                  { shouldValidate: true },
+                );
+                trigger("plan");
+              }}
+            />
+          );
+        })}
       </div>
 
       <div className="flex flex-row mt-10 bg-gray-100 w-full gap-5 justify-center pt-3 pb-3 rounded-lg">

@@ -29,16 +29,14 @@ const Step3 = ({ setValue, watch }) => {
     <div className="flex flex-col h-full w-full mt-10 justify-start gap-6">
       {addOnItems.map((item) => {
         const itemPrice = isMonthly ? item.monthlyPrice : item.yearlyPrice;
-        
+
         return (
           <AddOnInput
             key={item.name}
             name={item.name}
             description={item.description}
             price={
-              isMonthly
-                ? `${item.monthlyPrice}/mo`
-                : `${item.yearlyPrice}/yr`
+              isMonthly ? `${item.monthlyPrice}/mo` : `${item.yearlyPrice}/yr`
             }
             isSelected={watch("addOns")?.some(
               (selectedItem) => selectedItem.name === item.name,
