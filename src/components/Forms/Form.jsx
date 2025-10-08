@@ -26,8 +26,6 @@ const Form = ({ activeStep, setActiveStep }) => {
     },
   });
 
-  // register("plan", { required: "You must select a plan." });
-
   const handleValidation = async () => {
     let fieldsToValidate = [];
 
@@ -48,7 +46,7 @@ const Form = ({ activeStep, setActiveStep }) => {
 
   return (
     <>
-      <div className="flex flex-col border-2 border-blue-400 h-full  py-5 justify-between px-0 sm:px-6 md:px-10 lg:px-14 xl:px-28 w-full md:w-[50vw]">
+      <div className="flex flex-col border-2 border-blue-400 h-full py-5 justify-between px-0 sm:px-6 md:px-10 lg:px-14 xl:px-28 w-full md:w-[50vw] z-30">
         {activeStep === 5 ? (
           <Step5 />
         ) : (
@@ -64,7 +62,7 @@ const Form = ({ activeStep, setActiveStep }) => {
               <Step4 getValues={getValues} setActiveStep={setActiveStep} />
             )}
 
-            <div className="flex md:flex-row md:justify-between mt-5 border-2 border-pink-300 absolute md:relative bottom-0">
+            <div className="hidden md:flex flex-row w-full justify-between mt-5  bottom-0 bg-transparent">
               {activeStep === 1 ? (
                 <div></div>
               ) : (

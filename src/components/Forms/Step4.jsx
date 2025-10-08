@@ -9,7 +9,7 @@ const Step4 = ({ getValues, setActiveStep }) => {
   const totalCost = plan.price + addOnsCost;
 
   return (
-    <div className="flex flex-col w-full h-full justify-start">
+    <div className="flex flex-col w-full h-full justify-start mt-5">
       <div className="flex flex-col w-full p-5 bg-neutral-blue-100 rounded-lg gap-5 ">
         <div className="flex justify-center">
           <div className="text-primary-purple-600 font-bold text-lg">
