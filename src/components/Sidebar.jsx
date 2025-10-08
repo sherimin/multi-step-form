@@ -12,7 +12,7 @@ const Sidebar = ({ activeStep, setActiveStep }) => {
 
   return (
     <div
-      className={`hidden flex-col h-full w-72 bg-no-repeat bg-contain bg-center border-2 border-red-500 md:flex`}
+      className={`hidden flex-col h-full w-72 bg-no-repeat bg-contain bg-center md:flex`}
       style={{ backgroundImage: `url(${bgSidebar})` }}
     >
       {steps.map((step) => {
