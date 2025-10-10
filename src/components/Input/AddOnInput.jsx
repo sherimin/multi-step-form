@@ -17,7 +17,7 @@ const AddOnInput = ({ name, description, price, isSelected, onClick }) => {
         />
       </div>
 
-      <div>
+      <div className="ml-5">
         <div className="text-primary-blue-950 font-extrabold">{name}</div>
         <div className="text-neutral-grey-500">{description}</div>
       </div>

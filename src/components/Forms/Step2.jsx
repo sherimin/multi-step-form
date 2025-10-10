@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import SelectInput from "../Input/SelectInput";
 import arcadeAvatar from "../../assets/images/icon-arcade.svg";
 import advancedAvatar from "../../assets/images/icon-advanced.svg";
@@ -32,12 +32,30 @@ const Step2 = ({ setValue, trigger, watch }) => {
   const selectedPlan = watch("plan");
   const isMonthly = watch("isMonthly");
 
+  //Update plan price when user re-chooses monthly or yearly plan
+  useEffect(() => {
+    if (selectedPlan?.name) {
+      const planData = step2Selections.find((plan) => 
+        plan.title === selectedPlan.name
+      );
+
+      if (planData) {
+        const newPrice = isMonthly ? planData.monthlyPrice : planData.yearlyPrice;
+
+        setValue("plan", { name: selectedPlan.name, price: newPrice})
+      }
+    }
+  }, [isMonthly, selectedPlan?.name, setValue])
+  
+
   return (
     <div className="flex flex-col h-full w-full justify-start items-center mt-10">
       <div className="flex flex-col w-full gap-4 md:flex-row h-full md:h-1/2 ">
         {step2Selections.map((plan) => {
           const planName = plan.title;
           const planPrice = isMonthly ? plan.monthlyPrice : plan.yearlyPrice;
+
+          
 
           return (
             <SelectInput

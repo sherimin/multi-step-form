@@ -46,7 +46,7 @@ const Form = ({ activeStep, setActiveStep }) => {
 
   return (
     <>
-      <div className="flex flex-col h-full py-5 justify-between px-0 sm:px-6 md:px-10 lg:px-14 xl:px-28 w-full md:w-[50vw] z-30">
+      <div className="flex flex-col h-full py-5 px-0 sm:px-6 md:px-10 lg:px-14 xl:px-28 w-full md:w-[50vw] z-30">
         {activeStep === 5 ? (
           <Step5 />
         ) : (

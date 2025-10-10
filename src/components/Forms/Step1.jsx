@@ -3,7 +3,7 @@ import TextInput from "../Input/TextInput";
 
 const Step1 = ({ register, errors }) => {
   return (
-    <div className="flex flex-col h-full w-full justify-start items-start mt-10 gap-5">
+    <div className="flex flex-col h-auto md:h-full w-full mt-5 md:mt-10 gap-5">
       <TextInput
         label="Name"
         placeholder="e.g. John Smith"

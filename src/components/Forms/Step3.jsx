@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useEffect } from "react";
 import AddOnInput from "../Input/AddOnInput";
 
 const Step3 = ({ setValue, watch }) => {
   const isMonthly = watch("isMonthly");
+  const currentAddOns = watch("addOns") || [];
 
   const addOnItems = [
     {
@@ -25,10 +26,30 @@ const Step3 = ({ setValue, watch }) => {
     },
   ];
 
+  //Update add-on price when user re-chooses monthly or yearly plan
+  useEffect(() => {
+    if (currentAddOns.length > 0) {
+      const updateAddOns = currentAddOns.map((addOn) => {
+        const item = addOnItems.find((i) => i.name === addOn.name);
+
+        if (!item) return addOn;
+
+        const newPrice = isMonthly ? item.monthlyPrice : item.yearlyPrice;
+
+        return {
+           ...addOn, price: newPrice
+        }
+      });
+
+        setValue("addOns", updateAddOns, { shouldValidate: true });
+      }
+  }, [isMonthly, setValue])
+
   return (
     <div className="flex flex-col h-full w-full mt-10 justify-start gap-6">
       {addOnItems.map((item) => {
         const itemPrice = isMonthly ? item.monthlyPrice : item.yearlyPrice;
+        const currentAddOns = watch("addOns") || [];
 
         return (
           <AddOnInput
@@ -38,11 +59,11 @@ const Step3 = ({ setValue, watch }) => {
             price={
               isMonthly ? `${item.monthlyPrice}/mo` : `${item.yearlyPrice}/yr`
             }
-            isSelected={watch("addOns")?.some(
+            isSelected={currentAddOns.some(
               (selectedItem) => selectedItem.name === item.name,
             )}
             onClick={() => {
-              const currentAddOns = watch("addOns") || [];
+              
               const exist = currentAddOns.some(
                 (selectedItem) => selectedItem.name === item.name,
               );

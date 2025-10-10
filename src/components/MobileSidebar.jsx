@@ -22,7 +22,7 @@ const MobileSidebar = ({ activeStep, setActiveStep }) => {
       </div>
 
       {activeStep !== 5 && (
-        <div className="flex fixed bottom-0 w-full bg-neutral-white h-14 justify-between items-center left-0 right-0 p-8">
+        <div className="flex fixed bottom-0 w-full bg-neutral-white h-14 justify-between items-center left-0 right-0 p-5">
           {activeStep === 1 ? (
             <div></div>
           ) : (
