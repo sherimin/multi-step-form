@@ -22,12 +22,12 @@ const titleContent = [
 const Title = ({ activeStep }) => {
   return (
     <div className="flex flex-col">
-      <div className="text-primary-blue-950 font-extrabold text-3xl">
+      <h1 className="text-primary-blue-950 font-extrabold text-3xl">
         {titleContent[activeStep - 1].title}
-      </div>
-      <div className="text-neutral-grey-500 text-lg mt-2">
+      </h1>
+      <span className="text-neutral-grey-500 text-lg mt-2">
         {titleContent[activeStep - 1].description}
-      </div>
+      </span>
     </div>
   );
 };

@@ -1,11 +1,22 @@
 import React from "react";
+import { motion } from "framer-motion";
 
 const TextInput = ({ label, placeholder, register, error, ...rest }) => {
   return (
     <div className="flex flex-col w-full">
       <div className="flex flex-row justify-between mb-2 text-md">
         <div className="flex text-primary-blue-950">{label}</div>
-        {error && <p className="text-red-500 font-bold">{error.message}</p>}
+        {error && (
+          <motion.p
+            className="text-red-500 font-bold"
+            initial={{ opacity: 0, y: -5 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -5 }}
+            transition={{ duration: 0.2 }}
+          >
+            {error.message}
+          </motion.p>
+        )}
       </div>
 
       <input

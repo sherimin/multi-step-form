@@ -1,9 +1,15 @@
 import React from "react";
 import thankyouImg from "../../assets/images/icon-thank-you.svg";
+import { motion } from "framer-motion";
 
 const Step5 = () => {
   return (
-    <div className="flex flex-col h-full justify-center items-center gap-5">
+    <motion.div
+      initial={{ scale: 0.5, opacity: 0 }}
+      animate={{ scale: 1, opacity: 1 }}
+      transition={{ type: "spring", stiffness: 150, damping: 12 }}
+      className="flex flex-col h-full justify-center items-center gap-5"
+    >
       <div className="flex">
         <img src={thankyouImg} alt="thank-you-img" className="flex" />
       </div>
@@ -17,7 +23,7 @@ const Step5 = () => {
         our platform. If you ever need support, please feel free to email us at
         support@loremgaming.com.
       </p>
-    </div>
+    </motion.div>
   );
 };
 

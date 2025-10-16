@@ -3,6 +3,7 @@ import SelectInput from "../Input/SelectInput";
 import arcadeAvatar from "../../assets/images/icon-arcade.svg";
 import advancedAvatar from "../../assets/images/icon-advanced.svg";
 import proAvatar from "../../assets/images/icon-pro.svg";
+import { motion } from "framer-motion";
 
 const step2Selections = [
   {
@@ -113,9 +114,15 @@ const Step2 = ({ setValue, trigger, watch, errors, register }) => {
 
       {/* Error Display */}
       {errors.plan && (
-        <p className="absolute bottom-2 md:flex md:mt-4 md:relative text-sm text-primary-red-500">
-          Please select one plan before proceed.
-        </p>
+        <motion.p
+          className="absolute bottom-2 md:flex md:mt-4 md:relative text-sm text-primary-red-500"
+          initial={{ scale: 0.8, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          exit={{ scale: 0.8, opacity: 0 }}
+          transition={{ duration: 0.15 }}
+        >
+          Please select one plan before proceeding.
+        </motion.p>
       )}
     </div>
   );

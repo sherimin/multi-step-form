@@ -11,7 +11,6 @@ This is a solution to the [Multi-step form challenge on Frontend Mentor](https:/
 - [My process](#my-process)
   - [Built with](#built-with)
   - [What I learned](#what-i-learned)
-  - [Continued development](#continued-development)
   - [Useful resources](#useful-resources)
 - [Author](#author)
 
@@ -42,47 +41,86 @@ Users should be able to:
 
 ### Built with
 
-- [React](https://reactjs.org/) - JS library
-- [Styled Components](https://styled-components.com/) - For styles
+- [React](https://reactjs.org/)
+- [Styled Components](https://styled-components.com/)
+- [React-hook-form](https://react-hook-form.com/docs/useform)
+- [TailwindCSS](https://tailwindcss.com)
+- [Framer-Motion](https://motion.dev)
 
 ### What I learned
 
-Use this section to recap over some of your major learnings while working through this project. Writing these out and providing code samples of areas you want to highlight is a great way to reinforce your own knowledge.
+In this project, I learnt about ```useForm``` from React Hook Form, particularly how it manages form state and stores user input across multiple steps. I now understand how to validate, trigger, and persist form data while maintaining an efficient and clean application structure. Without ```useForm```, when I tried to store and manage every input field and handle validation, the form would look like this: 
 
-To see how you can add code snippets, see below:
+```
+...
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
 
-```html
-<h1>Some HTML code I'm proud of</h1>
+  const handleSubmit = () => {
+    const newErrors = {};
+    if (!name) newErrors.name = "Name is required";
+    if (!email.includes("@")) newErrors.email = "Invalid email";
+
+    setErrors(newErrors);
+
+    if (Object.keys(newErrors).length === 0) {
+      console.log("Submit:", { name, email });
+    }
+  };
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <input value={name} onChange={(e) => setName(e.target.value)} />
+      {errors.name && <p>{errors.name}</p>}
+
+      <input value={email} onChange={(e) => setEmail(e.target.value)} />
+      {errors.email && <p>{errors.email}</p>}
+
+      <button type="submit">Next</button>
+    </form>
+  );
+...
 ```
 
-```css
-.proud-of-this-css {
-  color: papayawhip;
-}
+The code is repetitive for a multi-step-form, and I also need to manually handle field validation and display error states. 
+
+Now with ```useForm```:
+
+```
+...
+const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+
+  const onSubmit = (data) => console.log("Submit:", data);
+
+  return (
+    <form onSubmit={handleSubmit(onSubmit)}>
+      <input {...register("name", { required: "Name is required" })} />
+      {errors.name && <p>{errors.name.message}</p>}
+
+      <input
+        {...register("email", {
+          required: "Email is required",
+          pattern: { value: /^\S+@\S+$/, message: "Invalid email" },
+        })}
+      />
+      {errors.email && <p>{errors.email.message}</p>}
+
+      <button type="submit">Next</button>
+    </form>
+  );
 ```
 
-```js
-const proudOfThisFunc = () => {
-  console.log("🎉");
-};
-```
-
-If you want more help with writing markdown, we'd recommend checking out [The Markdown Guide](https://www.markdownguide.org/) to learn more.
-
-**Note: Delete this note and the content within this section and replace with your own learnings.**
-
-### Continued development
-
-Use this section to outline areas that you want to continue focusing on in future projects. These could be concepts you're still not completely comfortable with or techniques you found useful that you want to refine and perfect.
-
-**Note: Delete this note and the content within this section and replace with your own plans for continued development.**
+```useForm``` handles all state validation automatically, so I don't need to use useState hook or manually manage error state.
+Besides, it also gives access to helpers like trigger(), setValue(), and getValues() which simplize the development of a multi-step-form. 
 
 ### Useful resources
 
-- [Example resource 1](https://www.example.com) - This helped me for XYZ reason. I really liked this pattern and will use it going forward.
-- [Example resource 2](https://www.example.com) - This is an amazing article which helped me finally understand XYZ. I'd recommend it to anyone still learning this concept.
-
-**Note: Delete this note and replace the list above with resources that helped you during the challenge. These could come in handy for anyone viewing your solution or for yourself when you look back on this project in the future.**
+- [react-hook-form.com](https://react-hook-form.com/docs/useform) - This website provides detailed explanation for usage of useForm hook.
+- [MDN](https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Forms/Form_validation) - This article explains form validation.
 
 ## Author
 
