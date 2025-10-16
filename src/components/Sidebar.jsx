@@ -2,7 +2,7 @@ import React from "react";
 import SideButton from "./SideButton";
 import bgSidebar from "../assets/images/bg-sidebar-desktop.svg";
 
-const Sidebar = ({ activeStep, setActiveStep }) => {
+const Sidebar = ({ activeStep }) => {
   const steps = [
     { id: 1, title: "step 1", subtitle: "your info" },
     { id: 2, title: "step 2", subtitle: "select plan" },
@@ -23,7 +23,6 @@ const Sidebar = ({ activeStep, setActiveStep }) => {
             title={step.title}
             subtitle={step.subtitle}
             isActive={step.id === activeStep}
-            onClick={() => setActiveStep(step.id)}
           />
         );
       })}

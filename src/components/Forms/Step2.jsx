@@ -28,25 +28,27 @@ const step2Selections = [
   },
 ];
 
-const Step2 = ({ setValue, trigger, watch }) => {
+const Step2 = ({ setValue, trigger, watch, errors, register }) => {
+  register("plan", { required: "Please select a plan." });
   const selectedPlan = watch("plan");
   const isMonthly = watch("isMonthly");
 
   //Update plan price when user re-chooses monthly or yearly plan
   useEffect(() => {
     if (selectedPlan?.name) {
-      const planData = step2Selections.find((plan) => 
-        plan.title === selectedPlan.name
+      const planData = step2Selections.find(
+        (plan) => plan.title === selectedPlan.name,
       );
 
       if (planData) {
-        const newPrice = isMonthly ? planData.monthlyPrice : planData.yearlyPrice;
+        const newPrice = isMonthly
+          ? planData.monthlyPrice
+          : planData.yearlyPrice;
 
-        setValue("plan", { name: selectedPlan.name, price: newPrice})
+        setValue("plan", { name: selectedPlan.name, price: newPrice });
       }
     }
-  }, [isMonthly, selectedPlan?.name, setValue])
-  
+  }, [isMonthly, selectedPlan?.name, setValue]);
 
   return (
     <div className="flex flex-col h-full w-full justify-start items-center mt-10">
@@ -54,8 +56,6 @@ const Step2 = ({ setValue, trigger, watch }) => {
         {step2Selections.map((plan) => {
           const planName = plan.title;
           const planPrice = isMonthly ? plan.monthlyPrice : plan.yearlyPrice;
-
-          
 
           return (
             <SelectInput
@@ -82,6 +82,7 @@ const Step2 = ({ setValue, trigger, watch }) => {
         })}
       </div>
 
+      {/* Monthly / Yearly toggle button */}
       <div className="flex flex-row mt-10 bg-gray-100 w-full gap-5 justify-center pt-3 pb-3 rounded-lg">
         <div
           className={`font-bold  ${isMonthly ? "text-primary-blue-950" : "text-neutral-grey-500"}`}
@@ -109,6 +110,13 @@ const Step2 = ({ setValue, trigger, watch }) => {
           Yearly
         </div>
       </div>
+
+      {/* Error Display */}
+      {errors.plan && (
+        <p className="absolute bottom-2 md:flex md:mt-4 md:relative text-sm text-primary-red-500">
+          Please select one plan before proceed.
+        </p>
+      )}
     </div>
   );
 };

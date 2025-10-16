@@ -1,4 +1,3 @@
-import React from "react";
 import { useForm } from "react-hook-form";
 import Title from "./Title";
 import Step1 from "./Step1";
@@ -20,7 +19,7 @@ const Form = ({ activeStep, setActiveStep }) => {
   } = useForm({
     defaultValues: {
       name: "",
-      plan: "",
+      plan: null,
       isMonthly: true,
       addOns: [],
     },
@@ -55,13 +54,20 @@ const Form = ({ activeStep, setActiveStep }) => {
 
             {activeStep === 1 && <Step1 register={register} errors={errors} />}
             {activeStep === 2 && (
-              <Step2 setValue={setValue} trigger={trigger} watch={watch} />
+              <Step2
+                setValue={setValue}
+                trigger={trigger}
+                watch={watch}
+                errors={errors}
+                register={register}
+              />
             )}
             {activeStep === 3 && <Step3 setValue={setValue} watch={watch} />}
             {activeStep === 4 && (
               <Step4 getValues={getValues} setActiveStep={setActiveStep} />
             )}
 
+            {/* Desktop Step Navigation */}
             <div className="hidden md:flex flex-row w-full justify-between mt-5  bottom-0 bg-transparent">
               {activeStep === 1 ? (
                 <div></div>
@@ -79,6 +85,29 @@ const Form = ({ activeStep, setActiveStep }) => {
                 <StepNavigation label="Next Step" onClick={handleValidation} />
               )}
             </div>
+
+            {/* Mobile Step Navigation */}
+            {activeStep !== 5 && (
+              <div className="flex fixed md:hidden bottom-0 w-full bg-neutral-white h-14 justify-between items-center left-0 right-0 p-5">
+                {activeStep === 1 ? (
+                  <div></div>
+                ) : (
+                  <StepNavigation
+                    label="Go Back"
+                    onClick={() => setActiveStep(activeStep - 1)}
+                  />
+                )}
+
+                {activeStep === 4 ? (
+                  <StepNavigation label="Confirm" onClick={handleValidation} />
+                ) : (
+                  <StepNavigation
+                    label="Next Step"
+                    onClick={handleValidation}
+                  />
+                )}
+              </div>
+            )}
           </>
         )}
       </div>

@@ -37,13 +37,14 @@ const Step3 = ({ setValue, watch }) => {
         const newPrice = isMonthly ? item.monthlyPrice : item.yearlyPrice;
 
         return {
-           ...addOn, price: newPrice
-        }
+          ...addOn,
+          price: newPrice,
+        };
       });
 
-        setValue("addOns", updateAddOns, { shouldValidate: true });
-      }
-  }, [isMonthly, setValue])
+      setValue("addOns", updateAddOns, { shouldValidate: true });
+    }
+  }, [isMonthly, setValue]);
 
   return (
     <div className="flex flex-col h-full w-full mt-10 justify-start gap-6">
@@ -63,7 +64,6 @@ const Step3 = ({ setValue, watch }) => {
               (selectedItem) => selectedItem.name === item.name,
             )}
             onClick={() => {
-              
               const exist = currentAddOns.some(
                 (selectedItem) => selectedItem.name === item.name,
               );

@@ -1,4 +1,3 @@
-// import logo from './logo.svg';
 import "./App.css";
 import Sidebar from "./components/Sidebar";
 import Form from "./components/Forms/Form";
@@ -11,7 +10,6 @@ function App() {
 
   return (
     <div className="body">
-      {/* <div> */}
       <div
         className="flex fixed min-w-full top-0 left-0 right-0 bg-no-repeat bg-contain bg-top justify-center md:hidden"
         style={{
@@ -19,7 +17,7 @@ function App() {
           paddingBottom: "50%",
         }}
       ></div>
-      {/* </div> */}
+
       <main className="relative flex h-4/5 bg-neutral-white p-[20px] rounded-2xl justify-center items-center w-11/12 md:w-auto z-40">
         <Sidebar activeStep={activeStep} setActiveStep={setActiveStep} />
         <MobileSidebar activeStep={activeStep} setActiveStep={setActiveStep} />
