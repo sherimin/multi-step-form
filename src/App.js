@@ -11,10 +11,9 @@ function App() {
   return (
     <div className="body">
       <div
-        className="flex fixed min-w-full top-0 left-0 right-0 bg-no-repeat bg-contain bg-top justify-center md:hidden"
+        className="flex fixed min-w-full top-0 left-0 right-0 bg-no-repeat bg-contain bg-top justify-center md:hidden pb-[50%]"
         style={{
           backgroundImage: `url(${mobileBg})`,
-          paddingBottom: "50%",
         }}
       ></div>
 

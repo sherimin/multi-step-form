@@ -50,7 +50,7 @@ const Step3 = ({ setValue, watch }) => {
     <div className="flex flex-col h-full w-full mt-10 justify-start gap-6">
       {addOnItems.map((item) => {
         const itemPrice = isMonthly ? item.monthlyPrice : item.yearlyPrice;
-        const currentAddOns = watch("addOns") || [];
+        // const currentAddOns = watch("addOns") || [];
 
         return (
           <AddOnInput

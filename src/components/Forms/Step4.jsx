@@ -13,7 +13,7 @@ const Step4 = ({ getValues, setActiveStep }) => {
       <div className="flex flex-col w-full p-5 bg-neutral-blue-100 rounded-lg gap-5 ">
         <div className="flex justify-center">
           <div className="text-primary-purple-600 font-bold text-lg">
-            {name}'s Bill Summary
+            {name}&apos;s Bill Summary
           </div>
         </div>
         <div className="flex w-full justify-between items-center">
