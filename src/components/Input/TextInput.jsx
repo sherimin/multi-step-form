@@ -23,7 +23,7 @@ const TextInput = ({ label, placeholder, error, ...rest }) => {
         className={`flex w-full border-[1px]  rounded-md outline-primary-purple-600 p-2 ${
           error ? "border-primary-red-500" : "border-neutral-grey-500"
         }`}
-        type="string"
+        type="text"
         placeholder={placeholder}
         {...rest}
       />

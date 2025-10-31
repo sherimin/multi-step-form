@@ -30,3 +30,18 @@
   width: 100vw;
   height: 100vh;
 }
+
+.mobile-bg {
+  background-image: url("./assets/images/bg-sidebar-mobile.svg");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: top;
+  padding-bottom: 50%;
+}
+
+.sidebar-bg {
+  background-image: url("./assets/images/bg-sidebar-desktop.svg");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+}

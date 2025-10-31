@@ -1,6 +1,5 @@
 import React from "react";
 import SideButton from "./SideButton";
-import bgSidebar from "../assets/images/bg-sidebar-desktop.svg";
 
 const Sidebar = ({ activeStep }) => {
   const steps = [
@@ -11,10 +10,7 @@ const Sidebar = ({ activeStep }) => {
   ];
 
   return (
-    <div
-      className={`hidden flex-col h-full w-72 bg-no-repeat bg-contain bg-center md:flex`}
-      style={{ backgroundImage: `url(${bgSidebar})` }}
-    >
+    <div className="hidden flex-col h-full w-72 md:flex sidebar-bg">
       {steps.map((step) => {
         return (
           <SideButton

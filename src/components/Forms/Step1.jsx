@@ -24,18 +24,26 @@ const Step1 = ({ register, errors }) => {
         })}
       />
 
-      <TextInput
-        label="Phone Number"
-        placeholder="e.g. 000-000-0000"
-        error={errors.phone}
-        {...register("phone", {
-          required: "This field is required.",
-          pattern: {
-            value: /^[0-9]{10}$/,
-            message: "Phone number must contain only digits.",
-          },
-        })}
-      />
+<TextInput
+  label="Phone Number"
+  placeholder="e.g. 000-000-0000"
+  error={errors.phone}
+  {...register("phone", {
+    required: "Phone number is required.",
+    pattern: {
+      value: /^[0-9]*$/,
+      message: "Phone number must contain only digits.",
+    },
+    minLength: {
+      value: 10,
+      message: "Phone number must be 10 digits long.",
+    },
+    maxLength: {
+      value: 10,
+      message: "Phone number must be 10 digits long.",
+    },
+  })}
+/>
     </div>
   );
 };
